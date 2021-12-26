@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0055)https://www.padmashreelabreport.com/patient_report.aspx -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+
+</title><meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./patient_report.aspx_files/jquery-3.2.1.min.js.download" type="text/javascript"></script>
+    <link href="./patient_report.aspx_files/bootstrap-theme.min.css" rel="stylesheet" type="text/css"><link href="./patient_report.aspx_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="./patient_report.aspx_files/bootstrap.min.js.download" type="text/javascript"></script>
+    <!-- Google Fonts -->
+    <link href="./patient_report.aspx_files/css" rel="stylesheet" type="text/css"><link href="./patient_report.aspx_files/css(1)" rel="stylesheet" type="text/css"><link href="./patient_report.aspx_files/jquery-ui.css" rel="stylesheet" type="text/css">
+    <script src="./patient_report.aspx_files/jquery-ui.min.js.download" type="text/javascript"></script>
+    <link href="./patient_report.aspx_files/jquery-ui.theme.css" rel="stylesheet" type="text/css">
+    <script src="./patient_report.aspx_files/bootbox.min.js.download" type="text/javascript"></script>
+    <script>
+
+        function ShowAlert(msg) {
+            var tag = "<h4 style='color:red'>" + msg + "</h4>";
+            bootbox.alert(tag);
+        }
+
+        function ShowInfo(msg) {
+            var tag = "<h4 style='color:blue'>" + msg + "</h4>";
+            bootbox.alert(tag);
+        }
+    </script>
+    <style type="text/css">
+        .container_1
+        {
+            margin: 2px;
+            width: 100%;
+            height: 100%;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+        
+        .container_2
+        {
+            margin: 0px;
+            width: 90%;
+            height: 90%;
+        }
+        
+        #pbody
+        {
+            height: 100%;
+        }
+        
+        
+        @media (min-width:768px)
+        {
+        
+            #pbody
+            {
+                height: 700px;
+            }
+        
+            #lab_title
+            {
+                margin-top: 25px;
+                font-size: large;
+                font-weight: bold;
+                color: white;
+            }
+        
+            .colpadding
+            {
+                margin: -5px;
+                padding: -5px;
+            }
+        
+        }
+        
+        @media (max-width:768px)
+        {
+        
+           
+            #lab_title
+            {
+                font-size: large;
+                color: white;
+                font-weight: bold;
+            }
+        
+            #img_logo
+            {
+                width:90%;
+            }
+        }
+        
+        
+        #pan_main_heading
+        {
+            background-color: Red;
+        }
+        
+        
+        
+        .panel_header_main
+        {
+            background-image: url('/onlinereports/images/block.JPG');
+            background-repeat: repeat;
+        }
+        
+        .panel_header_1
+        {
+            background-image: url('/images/block.JPG');
+            background-repeat: repeat;
+        }
+        
+
+        @media (min-width:1024px)
+        {
+        
+           
+        }
+        
+        
+    </style>
+    
+    <style type="text/css">
+        @media (min-width:768px)
+        {
+            
+            #pan_login
+            {
+                width: 310px;
+            }
+            .txt_from_date, .txt_to_date
+            {
+                max-width: 120px;
+            }
+            .txt_search
+            {
+                max-width: 150px;
+            }
+        }
+        #pan_heading1
+        {
+            font-weight: bold;
+            color: White;
+        }
+        
+        td
+        {
+            width: auto;
+            padding: 2px;
+            margin: 2px;
+            font-weight: bold;
+        }
+        
+        .tdlabel
+        {
+            font-size: smaller;
+            width: 50%;
+        }
+        
+        .modal.modal-wide .modal-dialog
+        {
+            width: 100%;
+            height:100%;
+        }
+        .modal-wide .modal-body
+        {
+            overflow-y: auto;
+            margin: 2px;
+            padding: 2px;
+        }
+        
+        .ddl_page
+        {
+            max-width: 90px;
+            text-align: center;
+        }
+        
+        
+        #if_report
+        {
+            border-bottom-style:none;
+            padding:5px;
+        }
+        
+    </style>
+    <script type="text/javascript">
+
+
+        var PopType = 'report';
+
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url);
+                return false;
+            }
+            return true;
+        }
+
+        $(document).ready(".modal-wide").on("show.bs.modal", function () {
+
+            var height = $(window).height() - 100;
+            var width = $(window).width() - 100;
+            if (PopType == "changepwd") {
+                height = 300;
+                width =400;
+            }
+
+            $(this).find(".modal-dialog").css("max-height", height);
+            $(this).find(".modal-dialog").css("height", height);
+
+            $(this).find(".modal-body").css("max-height", height);
+            $(this).find(".modal-body").css("height", height);
+            $(this).find("#div_pdf").css("min-height", height - 100);
+
+
+            $(this).find(".modal-dialog").css("max-width", width+50);
+            $(this).find(".modal-dialog").css("width", width+50);
+//            $(this).find(".modal-body").css("max-width", width);
+//            $(this).find(".modal-body").css("width", width);
+//            $(this).find("#div_pdf").css("min-width", width - 50);
+
+
+
+        });
+
+
+        $(document).ready('#myModal').on('hidden.bs.modal', function (e) {
+            $("#div_pdf").empty();
+
+        })
+
+        function open_report(lab_id, lab_type) {
+
+            var height = $(window).height() - 130;
+            gHeight = height;
+            var options = {
+                "backdrop": "static"
+            }
+            $("#myModalLabel").text('Lab Report View');
+            var url_path = "reportlist.aspx?lab_id=" + lab_id + "&lab_type=" + lab_type;
+            var tags = '<iframe id="if_report" src="' + url_path + '" width="100%" height="' + height + '"></iframe>';
+            $("myModalLabel").text('Lab Report View');
+            $("#div_pdf").append(tags);
+            $('#myModal').modal(options);
+
+
+
+
+        }
+
+        function change_password() {
+
+            var height = 400;
+            PopType = "changepwd";
+            var options = {
+                "backdrop": "static"
+            }
+
+            var url_path = "changepwd.aspx";
+            var tags = '<iframe id="if_report" src="' + url_path + '" width="100%" height="' + height + '"></iframe>';
+            $("#myModalLabel").text('Change password');
+            $("#div_pdf").append(tags);
+            $('#myModal').modal(options);
+            
+
+//            bootbox.alert('<h1>Hi...!</h1>');
+
+
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.datepicker.setDefaults({
+                dateFormat: "dd/mm/yy"
+            });
+
+            $(".txt_from_date").datepicker();
+            $(".txt_to_date").datepicker();
+
+
+        });
+
+
+        function set_prv_page() {
+
+            var ddl_page = '#' + "ContentPlaceHolder1_ddl_page";
+            var cIndex = $(ddl_page).val();
+            cIndex--;
+            if (cIndex > 0) {
+                $(ddl_page).val(cIndex);
+                __doPostBack('ContentPlaceHolder1_ddl_page', '');
+            }
+
+        }
+
+        function set_next_page() {
+
+            var ddl_page = '#' + "ContentPlaceHolder1_ddl_page";
+            var cIndex = $(ddl_page).val();
+            var max = $(ddl_page).children('option').length;
+            cIndex++;
+
+            if (cIndex <= max) {
+                $(ddl_page).val(cIndex);
+                $("#li_prev").enableSelection();
+                __doPostBack('ContentPlaceHolder1_ddl_page', '');
+            }
+        }
+    
+    </script>
+</head>
+<body>
+    <div class="container container_1">
+        <div class="panel panel-danger" id="pan_main">
+            <div class="panel-heading" style="background-image: url(&#39;images/block.JPG&#39;);
+                background-repeat: repeat">
+                <div class="row">
+                    <div class="col-sm-9" style="text-align:center;">
+                        <div style="background-color: rgb(234, 234, 234); --darkreader-inline-bgcolor:#242728;" data-darkreader-inline-bgcolor="">
+                        
+                        <img src="./patient_report.aspx_files/logo.jpg" id="img_logo">
+                        </div>
+                    </div>
+                    <div class="col-sm-3" style="text-align:center">
+                        <div id="lab_title">
+                            Online Reports</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="post" action="https://www.padmashreelabreport.com/patient_report.aspx" id="form1" class="form-inline">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE0NjA3MzkxMTYPZBYCZg9kFgICAw9kFgICAQ9kFggCAQ8PFgIeBFRleHQFF1dlbGNvbWUgU0hBUkFUSCBVRFVQQSBTZGQCAw8PFgIeB1Zpc2libGVoZBYEAgEPDxYCHwAFCjA1LzA5LzIwMjFkZAIDDw8WAh8ABQowOC8wOS8yMDIxZGQCBQ8PFgIfAAXGBjxkaXYgY2xhc3M9J3Jvdyc+PGRpdiBjbGFzcz0nY29sIGNvbC1tZC04Jz48ZGl2IGNsYXNzPSdwYW5lbCBwYW5lbC1zdWNjZXNzJz48ZGl2IGNsYXNzPSdwYW5lbC1oZWFkaW5nJz48Yj5SMTg0Nzc3NS1NYXN0ZXIgU0hBUkFUSCBVRFVQQSBTPC9iPjwvZGl2PjxkaXYgY2xhc3M9J3BhbmVsLWJvZHknIHN0eWxlPSdtYXJnaW46MXB4O3BhZGRpbmc6MXB4Oyc+PGRpdiBjbGFzcz0nd2VsbCcgc3R5bGU9J21hcmdpbjoxcHg7cGFkZGluZzoxcHgnID48dGFibGU+PHRyPjx0ZCBjbGFzcz0ndGRsYWJlbCc+UmVnLkRhdGU8L3RkPjx0ZD46MDgvMDkvMjAyMSAxNzozMTwvdGQ+PC90cj48dHI+PHRkIGNsYXNzPSd0ZGxhYmVsJz5FeHBlY3RlZCBSZXBvcnQgVG08L3RkPjx0ZD46MDgvMDkvMjAyMSAxNzozMTwvdGQ+PC90cj48dHI+PHRkIGNsYXNzPSd0ZGxhYmVsJz5SZXBvcnQgU3RhdHVzPC90ZD48dGQ+OjxzcGFuIGNsYXNzPSdsYWJlbCBsYWJlbC1zdWNjZXNzJz5SZWFkeTwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjbGFzcz0ndGRsYWJlbCc+RG93bmxvYWQgU3RhdHVzPC90ZD48dGQ+OiBDb21wbGV0ZWQ8L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPTI+PHRhYmxlPjx0cj48dGQ+PGEgaHJlZj0nUmVwb3J0cy9hZmE2NmIxZS1mMThkLTQ3YWQtYjBkOS05OTA5ZmFlYjUzNzBfMTkzMjQ4L1IxODQ3Nzc1X1NIQVJBVEhfVURVUEFfU18wODA5MjExOTMyNDgucGRmJyB0YXJnZXQ9J19uZXcnIGNsYXNzPSdidG4gYnRuLXByaW1hcnknPlZpZXcgTGFiIFJlcG9ydDwvYT48L3RkPjwvdHI+PC90YWJsZT48L3RkPjwvdHI+PC90YWJsZT48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj5kZAIHDw8WAh8BaGQWAgIBDxBkEBUAFQAUKwMAFgBkZKG5UATaT5T8zjd5GtwF7UwHEff7T1q4/vIEFgTI9MyD">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="E2F0DED4">
+</div>
+    <div>
+        
+    <div class="container" style="margin-top: -20px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span id="ContentPlaceHolder1_lbl_user">Welcome SHARATH UDUPA S</span>
+                <div style="float: right">
+                    <a href="javascript:change_password();" class="btn btn-primary btn-sm">Change Password</a>
+                    <a href="https://www.padmashreelabreport.com/login.aspx" class="btn btn-primary btn-sm">Logout</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                
+                <div class="report_list" style="padding: 10px">
+                    <span id="ContentPlaceHolder1_lbl_report_list"><div class="row"><div class="col col-md-8"><div class="panel panel-success"><div class="panel-heading"><b>R1847775-Mistress ATTUR VAISHNAVI</b></div><div class="panel-body" style="margin:1px;padding:1px;"><div class="well" style="margin:1px;padding:1px"><table><tbody><tr><td class="tdlabel">Reg.Date</td><td>:05/01/2022 17:31</td></tr><tr><td class="tdlabel">Expected Report Tm</td><td>:05/01/2022 17:31</td></tr><tr><td class="tdlabel">Report Status</td><td>:<span class="label label-success">Ready</span></td></tr><tr><td class="tdlabel">Download Status</td><td>: Completed</td></tr><tr><td colspan="2"><table><tbody><tr><td><a href="https://drive.google.com/file/d/1sN6vWlLq80sbk-1Cf5gg3uZ5gk3kmNR_/view?usp=sharing" target="_new" class="btn btn-primary">View Lab Report</a></td></tr></tbody></table></td></tr></tbody></table></div></div></div></div></div></span>
+                </div>
+                <div class="panel-footer" id="div_pan_footer" style="text-align: center; margin: 2px;
+                    padding: 2px">
+                    
+
+
+                   <span class="alert-warning"> Note : Only blood sample reports are available for online download. Please collect X-RAY,ECG and RADIOLOGY reports directly from the lab.</span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- Modal Wide -->
+    <div class="modal modal-wide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" id="mdialog" style="margin-top:5px">
+            <div class="modal-content">
+                <div class="modal-header" id="mod_header" style="margin:3px;padding:3px">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Lab Report View</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="div_pdf">
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin:3px;padding:3px">
+                    <button type="button" id="btn_close_pdf" class="btn btn-default" data-dismiss="modal">
+                        Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+
+
+
+
+    </div>
+    </form>
+
+
+</body></html>
